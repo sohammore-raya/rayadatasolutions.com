@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Raya Data Solutions helps growing businesses turn scattered data into clear reporting, reliable analytics and better decisions.">
+  <meta name="theme-color" content="#f7faf8">
+  <title>Raya Data Solutions | Clarity from your data</title>
+  <style>
+    :root {
+      --navy: #102b46;
+      --blue: #2563a6;
+      --green: #21845b;
+      --green-dark: #176344;
+      --mint: #eaf5ef;
+      --pale-blue: #eef4fa;
+      --ink: #243447;
+      --muted: #647487;
+      --line: #e2e9e6;
+      --white: #fff;
+      --shadow: 0 18px 55px rgba(16, 43, 70, .09);
+      --radius: 22px;
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: #fff; color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .container { width: min(var(--max), calc(100% - 44px)); margin: auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; color: var(--green-dark);
+      font-size: .78rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+    }
+    .eyebrow:before { content: ""; width: 22px; height: 2px; background: var(--green); }
+    .site-header {
+      position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.92);
+      backdrop-filter: blur(14px); border-bottom: 1px solid rgba(226,233,230,.8);
+    }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 850; color: var(--navy); letter-spacing: -.035em; }
+    .brand-mark {
+      width: 39px; height: 39px; border-radius: 12px; display: grid; place-items: center;
+      color: #fff; font-size: 1.05rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      box-shadow: 0 7px 18px rgba(33,132,91,.2);
+    }
+    .brand small { display: block; font-size: .62rem; letter-spacing: .16em; color: var(--muted); font-weight: 750; margin-top: -3px; }
+    .nav-links { display: flex; align-items: center; gap: 29px; color: #526477; font-size: .9rem; font-weight: 650; }
+    .nav-links a:hover { color: var(--green-dark); }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: 9px;
+      border: 1px solid transparent; border-radius: 999px; padding: 13px 21px;
+      font-size: .92rem; font-weight: 750; transition: .2s ease; cursor: pointer;
+    }
+    .btn-primary { color: #fff; background: var(--green); box-shadow: 0 8px 20px rgba(33,132,91,.18); }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .btn-outline { border-color: #cbd8d2; color: var(--navy); background: #fff; }
+    .btn-outline:hover { border-color: var(--green); color: var(--green-dark); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: white; border-radius: 10px; padding: 8px 11px; color: var(--navy); }
+    .hero { overflow: hidden; position: relative; padding: 88px 0 82px; background: linear-gradient(115deg,#f7fbf8 0%,#fff 56%,#f3f7fb 100%); }
+    .hero:after {
+      content: ""; position: absolute; width: 480px; height: 480px; border-radius: 50%;
+      right: -210px; top: -190px; background: radial-gradient(circle,rgba(33,132,91,.10),rgba(37,99,166,0));
+      pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: 65px; position: relative; z-index: 1; }
+    h1 { color: var(--navy); font-size: clamp(2.8rem,5.1vw,4.65rem); line-height: 1.06; letter-spacing: -.06em; margin: 18px 0 23px; max-width: 650px; }
+    h1 span { color: var(--green); }
+    .hero-copy { max-width: 570px; color: #5b6d7d; font-size: 1.12rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 31px; }
+    .trust-line { margin-top: 27px; color: #7a8996; font-size: .83rem; }
+    .dashboard-wrap { position: relative; }
+    .dashboard {
+      background: #fff; border: 1px solid #e5ece8; border-radius: 20px; padding: 22px;
+      box-shadow: var(--shadow); transform: rotate(1.1deg);
+    }
+    .dash-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .dash-title { font-weight: 800; color: var(--navy); font-size: .95rem; }
+    .dash-label { font-size: .7rem; color: var(--muted); background: var(--mint); padding: 5px 9px; border-radius: 30px; font-weight: 700; }
+    .metric-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .metric { padding: 13px 11px; background: #f8faf9; border: 1px solid #edf1ef; border-radius: 12px; }
+    .metric small { color: #7b8995; font-size: .67rem; display: block; }
+    .metric strong { display: block; color: var(--navy); font-size: 1.25rem; letter-spacing: -.04em; margin-top: 4px; }
+    .metric em { font-style: normal; font-size: .65rem; color: var(--green); font-weight: 750; }
+    .chart-card { margin-top: 13px; padding: 15px; border: 1px solid #edf1ef; border-radius: 13px; }
+    .chart-heading { display: flex; justify-content: space-between; font-size: .75rem; color: var(--muted); font-weight: 700; }
+    .chart { height: 120px; margin-top: 12px; display: flex; align-items: end; gap: 9px; border-bottom: 1px solid #dfe8e3; padding: 0 5px; }
+    .bar { flex: 1; border-radius: 6px 6px 0 0; background: linear-gradient(180deg,#64b68b,#21845b); opacity: .9; }
+    .bar:nth-child(2n) { background: linear-gradient(180deg,#78a9d5,#2563a6); }
+    .chart-months { display: flex; justify-content: space-between; color: #98a4ad; font-size: .62rem; margin-top: 7px; }
+    .dash-note {
+      position: absolute; left: -26px; bottom: -25px; background: #fff; border: 1px solid #e4ece7;
+      border-radius: 13px; padding: 13px 16px; box-shadow: 0 12px 30px rgba(16,43,70,.10);
+      color: var(--navy); font-size: .78rem; font-weight: 750;
+    }
+    .dash-note span { color: var(--green); }
+    section { padding: 88px 0; }
+    .section-head { max-width: 690px; margin-bottom: 42px; }
+    h2 { color: var(--navy); font-size: clamp(2rem,3.4vw,3rem); letter-spacing: -.045em; line-height: 1.13; margin: 14px 0; }
+    .section-head p { color: var(--muted); font-size: 1.04rem; margin: 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .service-card { padding: 27px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; transition: .2s ease; }
+    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: #c9ded2; }
+    .service-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; color: var(--green-dark); background: var(--mint); font-size: 1.35rem; }
+    .service-card:nth-child(2) .service-icon { color: var(--blue); background: var(--pale-blue); }
+    .service-card h3 { color: var(--navy); margin: 20px 0 8px; font-size: 1.15rem; }
+    .service-card p { color: var(--muted); font-size: .93rem; margin: 0; }
+    .problems { background: #f7faf8; }
+    .problem-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
+    .problem-list { display: grid; gap: 13px; }
+    .problem-item { display: flex; gap: 14px; align-items: flex-start; padding: 17px 18px; background: #fff; border: 1px solid #e8efeb; border-radius: 14px; }
+    .check { color: var(--green); font-weight: 900; font-size: 1.05rem; }
+    .problem-item strong { display: block; color: var(--navy); font-size: .96rem; }
+    .problem-item span:last-child { color: var(--muted); font-size: .85rem; }
+    .approach { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; counter-reset: steps; }
+    .step { border-top: 2px solid #dce9e1; padding: 21px 12px 0 0; counter-increment: steps; }
+    .step:before { content: "0" counter(steps); color: var(--green); font-size: .8rem; font-weight: 850; letter-spacing: .1em; }
+    .step h3 { color: var(--navy); margin: 11px 0 7px; font-size: 1.1rem; }
+    .step p { color: var(--muted); font-size: .91rem; margin: 0; }
+    .tech { background: #f4f8fb; padding: 58px 0; }
+    .tech-row { display: flex; align-items: center; justify-content: space-between; gap: 25px; flex-wrap: wrap; }
+    .tech-intro { max-width: 270px; }
+    .tech-intro h2 { font-size: 1.65rem; margin: 0 0 7px; }
+    .tech-intro p { color: var(--muted); font-size: .88rem; margin: 0; }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tech-tags span { padding: 10px 16px; border: 1px solid #dbe5ed; background: #fff; color: #35536d; border-radius: 999px; font-size: .88rem; font-weight: 750; }
+    .engagement { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .engage-card { padding: 30px; border-radius: var(--radius); border: 1px solid var(--line); }
+    .engage-card.featured { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .engage-card h3 { font-size: 1.25rem; margin: 0 0 8px; }
+    .engage-card p { margin: 0; color: var(--muted); font-size: .93rem; }
+    .engage-card.featured p { color: #c5d2df; }
+    .engage-card ul { padding-left: 19px; margin: 18px 0 0; font-size: .9rem; }
+    .engage-card li { margin: 7px 0; }
+    .engage-card.featured li { color: #e4edf4; }
+    .about { background: #f7faf8; }
+    .about-inner { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: center; }
+    .about-mark { min-height: 260px; border-radius: 25px; background: linear-gradient(135deg,#e7f3ec,#eaf1f8); display: grid; place-items: center; position: relative; overflow: hidden; }
+    .about-mark:before,.about-mark:after { content: ""; position: absolute; border: 1px solid rgba(33,132,91,.18); border-radius: 50%; width: 240px; height: 240px; }
+    .about-mark:after { width: 170px; height: 170px; border-color: rgba(37,99,166,.22); }
+    .about-mark strong { z-index: 1; font-size: 2.7rem; letter-spacing: -.08em; color: var(--navy); }
+    .about-copy p { color: var(--muted); }
+    .contact { background: #fff; }
+    .contact-panel { display: grid; grid-template-columns: 1fr .85fr; gap: 50px; background: linear-gradient(120deg,#f0f7f2,#f0f5fa); padding: 48px; border-radius: 26px; }
+    .contact-panel h2 { margin-top: 12px; }
+    .contact-panel p { color: var(--muted); }
+    .contact-details { display: grid; gap: 13px; align-content: center; }
+    .contact-detail { background: rgba(255,255,255,.82); border: 1px solid #e1eae5; padding: 17px 19px; border-radius: 13px; }
+    .contact-detail small { color: var(--muted); display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; }
+    .contact-detail strong { color: var(--navy); overflow-wrap: anywhere; }
+    footer { padding: 27px 0; border-top: 1px solid var(--line); color: #71808d; font-size: .82rem; }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    @media (max-width: 850px) {
+      .hero-grid,.problem-grid,.about-inner { grid-template-columns: 1fr; gap: 45px; }
+      .dashboard-wrap { max-width: 570px; margin: auto; width: 100%; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .contact-panel { grid-template-columns: 1fr; gap: 20px; padding: 34px; }
+      .nav-links { gap: 16px; }
+    }
+    @media (max-width: 650px) {
+      .container { width: min(100% - 32px,var(--max)); }
+      .nav { min-height: 68px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 22px 22px; background: white; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; }
+      .nav-links.open { display: flex; }
+      .nav-links .btn { margin-top: 5px; }
+      .hero { padding: 65px 0 70px; }
+      h1 { font-size: clamp(2.65rem,13vw,3.7rem); }
+      section { padding: 68px 0; }
+      .services-grid,.approach,.engagement { grid-template-columns: 1fr; }
+      .metric-grid { gap: 6px; }
+      .metric { padding: 10px 8px; }
+      .metric strong { font-size: 1.05rem; }
+      .dash-note { left: 5px; }
+      .tech-row { align-items: flex-start; }
+      .contact-panel { padding: 27px 22px; }
+      .hero-actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Raya Data Solutions home">
+        <span class="brand-mark">R</span>
+        <span>RAYA DATA SOLUTIONS<small>CLARITY FROM YOUR DATA</small></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#services">Services</a><a href="#approach">Our approach</a><a href="#about">About</a>
+        <a class="btn btn-primary" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Analytics that moves business forward</span>
+          <h1>Make your data work <span>for you.</span></h1>
+          <p class="hero-copy">We help growing businesses bring their data together, simplify reporting and uncover the insights behind better decisions.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Talk to an analytics expert <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-outline" href="#services">Explore our services</a>
+          </div>
+          <div class="trust-line">Practical analytics. Clear answers. A partner invested in your progress.</div>
+        </div>
+        <div class="dashboard-wrap" aria-label="Illustrative business intelligence dashboard">
+          <div class="dashboard">
+            <div class="dash-top"><div class="dash-title">Business performance overview</div><span class="dash-label">Illustrative dashboard</span></div>
+            <div class="metric-grid">
+              <div class="metric"><small>Revenue</small><strong>₹42.8L</strong><em>↑ Performance</em></div>
+              <div class="metric"><small>Orders</small><strong>1,284</strong><em>↑ Activity</em></div>
+              <div class="metric"><small>Avg. value</small><strong>₹3,330</strong><em>Tracked clearly</em></div>
+            </div>
+            <div class="chart-card">
+              <div class="chart-heading"><span>Revenue trend</span><span>Last 6 months</span></div>
+              <div class="chart">
+                <div class="bar" style="height:34%"></div><div class="bar" style="height:48%"></div>
+                <div class="bar" style="height:43%"></div><div class="bar" style="height:62%"></div>
+                <div class="bar" style="height:72%"></div><div class="bar" style="height:88%"></div>
+              </div>
+              <div class="chart-months"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div>
+            </div>
+          </div>
+          <div class="dash-note">From raw data to <span>clear direction ↗</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">What we do</span>
+          <h2>Good decisions start with better information.</h2>
+          <p>From connecting data to building useful reports, we make analytics practical, accessible and aligned with the way your business works.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card"><div class="service-icon">▥</div><h3>Business intelligence</h3><p>Clear, decision-ready dashboards and reporting that help you understand performance without chasing spreadsheets.</p></article>
+          <article class="service-card"><div class="service-icon">⌘</div><h3>Data engineering</h3><p>Bring information from different systems into dependable, well-structured data pipelines and reporting foundations.</p></article>
+          <article class="service-card"><div class="service-icon">◈</div><h3>Analytics consulting</h3><p>Identify the metrics that matter, answer business questions and turn analysis into practical next steps.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="problems">
+      <div class="container problem-grid">
+        <div>
+          <span class="eyebrow">The difference</span>
+          <h2>Less time assembling reports. More time acting on them.</h2>
+          <p style="color:var(--muted)">Growing businesses often have the data they need, but it is spread across tools, teams and spreadsheets. We help make it useful.</p>
+          <a class="btn btn-primary" href="#contact">Discuss a business challenge ↗</a>
+        </div>
+        <div class="problem-list">
+          <div class="problem-item"><span class="check">✓</span><div><strong>Scattered business information</strong><span>Connect important data sources into a more consistent view.</span></div></div>
+          <div class="problem-item"><span class="check">✓</span><div><strong>Manual, repetitive reporting</strong><span>Reduce spreadsheet work with repeatable reporting processes.</span></div></div>
+          <div class="problem-item"><span class="check">✓</span><div><strong>Unclear performance metrics</strong><span>Define useful KPIs and make trends easier to understand.</span></div></div>
+          <div class="problem-item"><span class="check">✓</span><div><strong>Limited in-house analytics capacity</strong><span>Get experienced support without building a large analytics team.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">A straightforward process</span>
+          <h2>Start with the question. Build only what helps answer it.</h2>
+          <p>Our approach is collaborative and focused on outcomes—not technology for its own sake.</p>
+        </div>
+        <div class="approach">
+          <article class="step"><h3>Understand</h3><p>We learn how your business operates, what decisions you need to make and where information gets stuck.</p></article>
+          <article class="step"><h3>Build</h3><p>We shape the data, reporting and analytics solution around your priorities and existing tools.</p></article>
+          <article class="step"><h3>Improve</h3><p>We review what is useful, refine the solution and help your team get lasting value from it.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tech">
+      <div class="container tech-row">
+        <div class="tech-intro"><h2>Tools that fit your business.</h2><p>We select technology based on the problem, your data and your existing environment.</p></div>
+        <div class="tech-tags"><span>Snowflake</span><span>Python</span><span>Tableau</span><span>dbt</span><span>SQL</span></div>
+      </div>
+    </section>
+
+    <section id="engagement">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Flexible ways to work together</span>
+          <h2>Get the support you need, when you need it.</h2>
+          <p>Whether you have a defined project or need an ongoing analytics partner, we can shape an engagement around your goals.</p>
+        </div>
+        <div class="engagement">
+          <article class="engage-card featured"><h3>Ongoing analytics partner</h3><p>Consistent support for businesses that need reporting and analytics capabilities without a full in-house team.</p><ul><li>Regular reporting and dashboard improvements</li><li>Data pipeline monitoring and enhancements</li><li>Ad-hoc analysis and decision support</li><li>A practical, predictable engagement</li></ul></article>
+          <article class="engage-card"><h3>Defined analytics projects</h3><p>Focused delivery for a specific reporting, data integration or analytics requirement.</p><ul><li>Dashboard design and development</li><li>Data consolidation and transformation</li><li>Reporting automation</li><li>Analytics discovery and recommendations</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-inner">
+        <div class="about-mark"><strong>RAYA.</strong></div>
+        <div class="about-copy">
+          <span class="eyebrow">About Raya</span>
+          <h2>A focused analytics partner for growing businesses.</h2>
+          <p>Raya Data Solutions is a boutique analytics consulting firm built around a simple idea: useful data should make running a business easier.</p>
+          <p>We combine thoughtful problem-solving with modern data tools to help teams move from fragmented information to clear, confident decisions. We value straightforward communication, practical solutions and long-term working relationships.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <div>
+            <span class="eyebrow">Let's get started</span>
+            <h2>What could your business do with clearer data?</h2>
+            <p>Tell us what you are trying to understand, automate or improve. We would be glad to explore whether Raya can help.</p>
+            <a class="btn btn-primary" href="mailto:YOUR_EMAIL_HERE?subject=Analytics%20enquiry%20for%20Raya">Start a conversation ↗</a>
+          </div>
+          <div class="contact-details">
+            <div class="contact-detail"><small>Email</small><strong>YOUR_EMAIL_HERE</strong></div>
+            <div class="contact-detail"><small>Location</small><strong>Pune, India · Working remotely</strong></div>
+            <div class="contact-detail"><small>Typical conversations</small><strong>Dashboards · Reporting · Data pipelines · Analytics</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-row"><span>© <span id="year"></span> Raya Data Solutions. All rights reserved.</span><span>Clarity from your data.</span></div></footer>
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      toggle.textContent = open ? '×' : '☰';
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.textContent = '☰';
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
