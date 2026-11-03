@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Raya Data Solutions helps growing businesses turn scattered data into clear reporting, reliable analytics and better decisions.">
+  <title>Raya Data Solutions | Automated Reporting & Business Dashboards in Pune</title>
+  <meta name="description" content="Raya Data Solutions is a managed monthly analytics service for Indian businesses. We connect your business systems, automate recurring reports and deliver interactive dashboards.">
   <meta name="theme-color" content="#f7faf8">
-  <title>Raya Data Solutions | Clarity from your data</title>
+  <meta property="og:title" content="Raya Data Solutions | Automated Reporting & Business Dashboards">
+  <meta property="og:description" content="Stop preparing reports. Get automated reporting and clear visibility into your business performance, through one managed monthly service.">
+  <meta property="og:type" content="website">
   <style>
     :root {
       --navy: #102b46;
@@ -31,6 +34,10 @@
     }
     a { color: inherit; text-decoration: none; }
     button, input, textarea { font: inherit; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+    section[id] { scroll-margin-top: 78px; }
+    .skip-link { position: absolute; left: -999px; top: 8px; background: var(--navy); color: #fff; padding: 10px 16px; border-radius: 8px; z-index: 50; }
+    .skip-link:focus { left: 12px; }
     .container { width: min(var(--max), calc(100% - 44px)); margin: auto; }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 9px; color: var(--green-dark);
@@ -61,7 +68,9 @@
     .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
     .btn-outline { border-color: #cbd8d2; color: var(--navy); background: #fff; }
     .btn-outline:hover { border-color: var(--green); color: var(--green-dark); }
-    .menu-toggle { display: none; border: 1px solid var(--line); background: white; border-radius: 10px; padding: 8px 11px; color: var(--navy); }
+    .btn-light { background: #fff; color: var(--navy); }
+    .btn-light:hover { transform: translateY(-2px); background: var(--mint); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: white; border-radius: 10px; padding: 8px 11px; color: var(--navy); cursor: pointer; }
     .hero { overflow: hidden; position: relative; padding: 88px 0 82px; background: linear-gradient(115deg,#f7fbf8 0%,#fff 56%,#f3f7fb 100%); }
     .hero:after {
       content: ""; position: absolute; width: 480px; height: 480px; border-radius: 50%;
@@ -69,11 +78,12 @@
       pointer-events: none;
     }
     .hero-grid { display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: 65px; position: relative; z-index: 1; }
-    h1 { color: var(--navy); font-size: clamp(2.8rem,5.1vw,4.65rem); line-height: 1.06; letter-spacing: -.06em; margin: 18px 0 23px; max-width: 650px; }
+    h1 { color: var(--navy); font-size: clamp(2.5rem,4.7vw,4.25rem); line-height: 1.08; letter-spacing: -.055em; margin: 18px 0 23px; max-width: 650px; }
     h1 span { color: var(--green); }
-    .hero-copy { max-width: 570px; color: #5b6d7d; font-size: 1.12rem; }
+    .hero-copy { max-width: 580px; color: #5b6d7d; font-size: 1.1rem; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 31px; }
-    .trust-line { margin-top: 27px; color: #7a8996; font-size: .83rem; }
+    .trust-line { margin-top: 27px; color: #6b7b88; font-size: .85rem; display: flex; flex-wrap: wrap; gap: 8px 20px; }
+    .trust-line span:before { content: "✓ "; color: var(--green); font-weight: 900; }
     .dashboard-wrap { position: relative; }
     .dashboard {
       background: #fff; border: 1px solid #e5ece8; border-radius: 20px; padding: 22px;
@@ -81,37 +91,40 @@
     }
     .dash-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 20px; }
     .dash-title { font-weight: 800; color: var(--navy); font-size: .95rem; }
-    .dash-label { font-size: .7rem; color: var(--muted); background: var(--mint); padding: 5px 9px; border-radius: 30px; font-weight: 700; }
+    .dash-label { font-size: .7rem; color: #4d6073; background: var(--mint); padding: 5px 9px; border-radius: 30px; font-weight: 700; }
     .metric-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
     .metric { padding: 13px 11px; background: #f8faf9; border: 1px solid #edf1ef; border-radius: 12px; }
-    .metric small { color: #7b8995; font-size: .67rem; display: block; }
+    .metric small { color: #667683; font-size: .67rem; display: block; }
     .metric strong { display: block; color: var(--navy); font-size: 1.25rem; letter-spacing: -.04em; margin-top: 4px; }
-    .metric em { font-style: normal; font-size: .65rem; color: var(--green); font-weight: 750; }
     .chart-card { margin-top: 13px; padding: 15px; border: 1px solid #edf1ef; border-radius: 13px; }
     .chart-heading { display: flex; justify-content: space-between; font-size: .75rem; color: var(--muted); font-weight: 700; }
     .chart { height: 120px; margin-top: 12px; display: flex; align-items: end; gap: 9px; border-bottom: 1px solid #dfe8e3; padding: 0 5px; }
     .bar { flex: 1; border-radius: 6px 6px 0 0; background: linear-gradient(180deg,#64b68b,#21845b); opacity: .9; }
     .bar:nth-child(2n) { background: linear-gradient(180deg,#78a9d5,#2563a6); }
-    .chart-months { display: flex; justify-content: space-between; color: #98a4ad; font-size: .62rem; margin-top: 7px; }
+    .chart-months { display: flex; justify-content: space-between; color: #7b8993; font-size: .62rem; margin-top: 7px; }
     .dash-note {
       position: absolute; left: -26px; bottom: -25px; background: #fff; border: 1px solid #e4ece7;
       border-radius: 13px; padding: 13px 16px; box-shadow: 0 12px 30px rgba(16,43,70,.10);
       color: var(--navy); font-size: .78rem; font-weight: 750;
     }
-    .dash-note span { color: var(--green); }
+    .dash-note span { color: var(--green-dark); }
     section { padding: 88px 0; }
-    .section-head { max-width: 690px; margin-bottom: 42px; }
-    h2 { color: var(--navy); font-size: clamp(2rem,3.4vw,3rem); letter-spacing: -.045em; line-height: 1.13; margin: 14px 0; }
+    .section-head { max-width: 710px; margin-bottom: 42px; }
+    h2 { color: var(--navy); font-size: clamp(1.9rem,3.2vw,2.8rem); letter-spacing: -.045em; line-height: 1.13; margin: 14px 0; }
     .section-head p { color: var(--muted); font-size: 1.04rem; margin: 0; }
     .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
-    .service-card { padding: 27px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; transition: .2s ease; }
+    .service-card { padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; transition: .2s ease; }
     .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: #c9ded2; }
     .service-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px; color: var(--green-dark); background: var(--mint); font-size: 1.35rem; }
     .service-card:nth-child(2) .service-icon { color: var(--blue); background: var(--pale-blue); }
     .service-card h3 { color: var(--navy); margin: 20px 0 8px; font-size: 1.15rem; }
-    .service-card p { color: var(--muted); font-size: .93rem; margin: 0; }
+    .service-card p { color: var(--muted); font-size: .93rem; margin: 0 0 14px; }
+    .service-card ul { margin: 0; padding: 0; list-style: none; }
+    .service-card li { position: relative; padding-left: 22px; margin: 8px 0; color: var(--ink); font-size: .9rem; }
+    .service-card li:before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 900; }
     .problems { background: #f7faf8; }
     .problem-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
+    .problem-grid > div:first-child p { color: var(--muted); margin: 0 0 24px; }
     .problem-list { display: grid; gap: 13px; }
     .problem-item { display: flex; gap: 14px; align-items: flex-start; padding: 17px 18px; background: #fff; border: 1px solid #e8efeb; border-radius: 14px; }
     .check { color: var(--green); font-weight: 900; font-size: 1.05rem; }
@@ -124,20 +137,21 @@
     .step p { color: var(--muted); font-size: .91rem; margin: 0; }
     .tech { background: #f4f8fb; padding: 58px 0; }
     .tech-row { display: flex; align-items: center; justify-content: space-between; gap: 25px; flex-wrap: wrap; }
-    .tech-intro { max-width: 270px; }
+    .tech-intro { max-width: 330px; }
     .tech-intro h2 { font-size: 1.65rem; margin: 0 0 7px; }
-    .tech-intro p { color: var(--muted); font-size: .88rem; margin: 0; }
-    .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tech-intro p { color: var(--muted); font-size: .9rem; margin: 0; }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; max-width: 640px; }
     .tech-tags span { padding: 10px 16px; border: 1px solid #dbe5ed; background: #fff; color: #35536d; border-radius: 999px; font-size: .88rem; font-weight: 750; }
-    .engagement { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-    .engage-card { padding: 30px; border-radius: var(--radius); border: 1px solid var(--line); }
+    .engagement { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; }
+    .engage-card { padding: 32px; border-radius: var(--radius); border: 1px solid var(--line); }
     .engage-card.featured { background: var(--navy); color: #fff; border-color: var(--navy); }
     .engage-card h3 { font-size: 1.25rem; margin: 0 0 8px; }
     .engage-card p { margin: 0; color: var(--muted); font-size: .93rem; }
     .engage-card.featured p { color: #c5d2df; }
-    .engage-card ul { padding-left: 19px; margin: 18px 0 0; font-size: .9rem; }
-    .engage-card li { margin: 7px 0; }
+    .engage-card ul { padding-left: 19px; margin: 18px 0 0; font-size: .92rem; }
+    .engage-card li { margin: 8px 0; }
     .engage-card.featured li { color: #e4edf4; }
+    .engage-card .btn { margin-top: 24px; }
     .about { background: #f7faf8; }
     .about-inner { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: center; }
     .about-mark { min-height: 260px; border-radius: 25px; background: linear-gradient(135deg,#e7f3ec,#eaf1f8); display: grid; place-items: center; position: relative; overflow: hidden; }
@@ -149,30 +163,40 @@
     .contact-panel { display: grid; grid-template-columns: 1fr .85fr; gap: 50px; background: linear-gradient(120deg,#f0f7f2,#f0f5fa); padding: 48px; border-radius: 26px; }
     .contact-panel h2 { margin-top: 12px; }
     .contact-panel p { color: var(--muted); }
+    .contact-panel .btn { margin-top: 8px; }
     .contact-details { display: grid; gap: 13px; align-content: center; }
     .contact-detail { background: rgba(255,255,255,.82); border: 1px solid #e1eae5; padding: 17px 19px; border-radius: 13px; }
     .contact-detail small { color: var(--muted); display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; }
     .contact-detail strong { color: var(--navy); overflow-wrap: anywhere; }
-    footer { padding: 27px 0; border-top: 1px solid var(--line); color: #71808d; font-size: .82rem; }
+    .contact-detail a strong:hover { color: var(--green-dark); text-decoration: underline; }
+    footer { padding: 27px 0; border-top: 1px solid var(--line); color: #5f6e7b; font-size: .82rem; }
     .footer-row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-row a:hover { color: var(--green-dark); text-decoration: underline; }
+    .wa-float {
+      position: fixed; right: 18px; bottom: 18px; z-index: 30; display: none;
+      background: var(--green); color: #fff; font-weight: 750; font-size: .9rem;
+      padding: 13px 20px; border-radius: 999px; box-shadow: 0 10px 28px rgba(16,43,70,.25);
+    }
     @media (max-width: 850px) {
       .hero-grid,.problem-grid,.about-inner { grid-template-columns: 1fr; gap: 45px; }
       .dashboard-wrap { max-width: 570px; margin: auto; width: 100%; }
       .services-grid { grid-template-columns: 1fr 1fr; }
+      .engagement { grid-template-columns: 1fr; }
       .contact-panel { grid-template-columns: 1fr; gap: 20px; padding: 34px; }
       .nav-links { gap: 16px; }
     }
     @media (max-width: 650px) {
       .container { width: min(100% - 32px,var(--max)); }
       .nav { min-height: 68px; }
+      section[id] { scroll-margin-top: 68px; }
       .menu-toggle { display: block; }
       .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 22px 22px; background: white; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; }
       .nav-links.open { display: flex; }
       .nav-links .btn { margin-top: 5px; }
       .hero { padding: 65px 0 70px; }
-      h1 { font-size: clamp(2.65rem,13vw,3.7rem); }
+      h1 { font-size: clamp(2.3rem,10.5vw,3.3rem); }
       section { padding: 68px 0; }
-      .services-grid,.approach,.engagement { grid-template-columns: 1fr; }
+      .services-grid,.approach { grid-template-columns: 1fr; }
       .metric-grid { gap: 6px; }
       .metric { padding: 10px 8px; }
       .metric strong { font-size: 1.05rem; }
@@ -180,56 +204,63 @@
       .tech-row { align-items: flex-start; }
       .contact-panel { padding: 27px 22px; }
       .hero-actions .btn { width: 100%; }
+      .wa-float { display: inline-flex; }
+      footer { padding-bottom: 80px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="#home" aria-label="Raya Data Solutions home">
-        <span class="brand-mark">R</span>
-        <span>RAYA DATA SOLUTIONS<small>CLARITY FROM YOUR DATA</small></span>
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span>RAYA DATA SOLUTIONS<small>MANAGED ANALYTICS</small></span>
       </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">☰</button>
       <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-        <a href="#services">Services</a><a href="#approach">Our approach</a><a href="#about">About</a>
-        <a class="btn btn-primary" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+        <a href="#services">Services</a><a href="#approach">How it works</a><a href="#engagement">What's included</a><a href="#about">About</a>
+        <a class="btn btn-primary" href="https://wa.me/918263807293" target="_blank" rel="noopener">Let's talk <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow">Analytics that moves business forward</span>
-          <h1>Make your data work <span>for you.</span></h1>
-          <p class="hero-copy">We help growing businesses bring their data together, simplify reporting and uncover the insights behind better decisions.</p>
+          <span class="eyebrow">Managed analytics &amp; reporting</span>
+          <h1>Stop Preparing Reports. <span>Start Running Your Business.</span></h1>
+          <p class="hero-copy">Raya Data Solutions connects your business systems, automates recurring reports and delivers interactive dashboards that give you a clear view of your company's performance. All through one managed monthly service.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Talk to an analytics expert <span aria-hidden="true">↗</span></a>
-            <a class="btn btn-outline" href="#services">Explore our services</a>
+            <a class="btn btn-primary" href="https://wa.me/918263807293" target="_blank" rel="noopener">Talk to an analytics expert <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-outline" href="#services">See what we automate</a>
           </div>
-          <div class="trust-line">Practical analytics. Clear answers. A partner invested in your progress.</div>
+          <div class="trust-line"><span>Hours saved every week</span><span>One monthly subscription</span><span>No reporting software to manage</span></div>
         </div>
-        <div class="dashboard-wrap" aria-label="Illustrative business intelligence dashboard">
-          <div class="dashboard">
-            <div class="dash-top"><div class="dash-title">Business performance overview</div><span class="dash-label">Illustrative dashboard</span></div>
+        <div class="dashboard-wrap" role="img" aria-label="Illustration of a business performance dashboard with sample figures">
+          <div class="dashboard" aria-hidden="true">
+            <div class="dash-top"><div class="dash-title">Business performance overview</div><span class="dash-label">Sample layout</span></div>
             <div class="metric-grid">
-              <div class="metric"><small>Revenue</small><strong>₹42.8L</strong><em>↑ Performance</em></div>
-              <div class="metric"><small>Orders</small><strong>1,284</strong><em>↑ Activity</em></div>
-              <div class="metric"><small>Avg. value</small><strong>₹3,330</strong><em>Tracked clearly</em></div>
+              <div class="metric"><small>Revenue</small><strong>₹ —</strong></div>
+              <div class="metric"><small>Expenses</small><strong>₹ —</strong></div>
+              <div class="metric"><small>Profit</small><strong>₹ —</strong></div>
             </div>
             <div class="chart-card">
-              <div class="chart-heading"><span>Revenue trend</span><span>Last 6 months</span></div>
+              <div class="chart-heading"><span>Monthly sales trend</span><span>Illustrative</span></div>
               <div class="chart">
                 <div class="bar" style="height:34%"></div><div class="bar" style="height:48%"></div>
                 <div class="bar" style="height:43%"></div><div class="bar" style="height:62%"></div>
                 <div class="bar" style="height:72%"></div><div class="bar" style="height:88%"></div>
               </div>
-              <div class="chart-months"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div>
+              <div class="chart-months"><span>Month 1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
             </div>
           </div>
-          <div class="dash-note">From raw data to <span>clear direction ↗</span></div>
+          <div class="dash-note" aria-hidden="true">Reports ready <span>before you ask ↗</span></div>
         </div>
       </div>
     </section>
@@ -237,14 +268,41 @@
     <section id="services">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">What we do</span>
-          <h2>Good decisions start with better information.</h2>
-          <p>From connecting data to building useful reports, we make analytics practical, accessible and aligned with the way your business works.</p>
+          <span class="eyebrow">What you get</span>
+          <h2>Reporting that runs itself, so your team doesn't have to.</h2>
+          <p>We take over the repetitive work of collecting data, building reports and updating dashboards, and keep it running every month.</p>
         </div>
         <div class="services-grid">
-          <article class="service-card"><div class="service-icon">▥</div><h3>Business intelligence</h3><p>Clear, decision-ready dashboards and reporting that help you understand performance without chasing spreadsheets.</p></article>
-          <article class="service-card"><div class="service-icon">⌘</div><h3>Data engineering</h3><p>Bring information from different systems into dependable, well-structured data pipelines and reporting foundations.</p></article>
-          <article class="service-card"><div class="service-icon">◈</div><h3>Analytics consulting</h3><p>Identify the metrics that matter, answer business questions and turn analysis into practical next steps.</p></article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">⟳</div>
+            <h3>Automated recurring reports</h3>
+            <p>Daily, weekly and monthly reports prepared for you, on schedule.</p>
+            <ul>
+              <li>No more manual data collection or spreadsheet consolidation</li>
+              <li>Reports delivered when you need them</li>
+              <li>Fewer hours spent preparing management reports</li>
+            </ul>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">⌘</div>
+            <h3>Connected business data</h3>
+            <p>One consistent view across the software your business already uses.</p>
+            <ul>
+              <li>ERP, CRM, accounting, sales and operational data brought together</li>
+              <li>Same numbers across every department</li>
+              <li>Less fragmented and duplicated reporting</li>
+            </ul>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">▥</div>
+            <h3>Business dashboards &amp; KPI visibility</h3>
+            <p>Interactive dashboards that show how the business is performing.</p>
+            <ul>
+              <li>Revenue, sales, expenses, profitability and operations at a glance</li>
+              <li>Relevant metrics for owners and department heads</li>
+              <li>Reliable information for confident decisions</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
@@ -252,16 +310,16 @@
     <section class="problems">
       <div class="container problem-grid">
         <div>
-          <span class="eyebrow">The difference</span>
-          <h2>Less time assembling reports. More time acting on them.</h2>
-          <p style="color:var(--muted)">Growing businesses often have the data they need, but it is spread across tools, teams and spreadsheets. We help make it useful.</p>
-          <a class="btn btn-primary" href="#contact">Discuss a business challenge ↗</a>
+          <span class="eyebrow">Sound familiar?</span>
+          <h2>Your team has better things to do than build reports.</h2>
+          <p>Most businesses already have the data they need. It is spread across software, departments and Excel files, and someone has to stitch it together every week or month.</p>
+          <a class="btn btn-primary" href="https://wa.me/918263807293" target="_blank" rel="noopener">Discuss your requirements ↗</a>
         </div>
         <div class="problem-list">
-          <div class="problem-item"><span class="check">✓</span><div><strong>Scattered business information</strong><span>Connect important data sources into a more consistent view.</span></div></div>
-          <div class="problem-item"><span class="check">✓</span><div><strong>Manual, repetitive reporting</strong><span>Reduce spreadsheet work with repeatable reporting processes.</span></div></div>
-          <div class="problem-item"><span class="check">✓</span><div><strong>Unclear performance metrics</strong><span>Define useful KPIs and make trends easier to understand.</span></div></div>
-          <div class="problem-item"><span class="check">✓</span><div><strong>Limited in-house analytics capacity</strong><span>Get experienced support without building a large analytics team.</span></div></div>
+          <div class="problem-item"><span class="check" aria-hidden="true">✓</span><div><strong>Downloading reports from ERP and CRM systems</strong><span>Handled for you, automatically and on schedule.</span></div></div>
+          <div class="problem-item"><span class="check" aria-hidden="true">✓</span><div><strong>Combining multiple Excel spreadsheets</strong><span>Replaced by a single, consistent view of your data.</span></div></div>
+          <div class="problem-item"><span class="check" aria-hidden="true">✓</span><div><strong>Preparing management reports by hand</strong><span>Ready when you need them, without the last-minute rush.</span></div></div>
+          <div class="problem-item"><span class="check" aria-hidden="true">✓</span><div><strong>No clear view of KPIs across departments</strong><span>One place to see how each part of the business is performing.</span></div></div>
         </div>
       </div>
     </section>
@@ -269,47 +327,68 @@
     <section id="approach">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">A straightforward process</span>
-          <h2>Start with the question. Build only what helps answer it.</h2>
-          <p>Our approach is collaborative and focused on outcomes—not technology for its own sake.</p>
+          <span class="eyebrow">How it works</span>
+          <h2>We set it up, run it and keep improving it.</h2>
+          <p>You get a dedicated analytics partner, without hiring or managing reporting infrastructure yourself.</p>
         </div>
         <div class="approach">
-          <article class="step"><h3>Understand</h3><p>We learn how your business operates, what decisions you need to make and where information gets stuck.</p></article>
-          <article class="step"><h3>Build</h3><p>We shape the data, reporting and analytics solution around your priorities and existing tools.</p></article>
-          <article class="step"><h3>Improve</h3><p>We review what is useful, refine the solution and help your team get lasting value from it.</p></article>
+          <article class="step"><h3>Connect</h3><p>We learn which reports and numbers matter to you, then connect your business software and spreadsheets.</p></article>
+          <article class="step"><h3>Automate</h3><p>Your recurring reports and dashboards are built and scheduled, so they update without manual effort.</p></article>
+          <article class="step"><h3>Support &amp; improve</h3><p>Every month we keep everything running, add the reports you need next and adapt as your business changes.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="tech">
+    <section class="tech" aria-labelledby="who-heading">
       <div class="container tech-row">
-        <div class="tech-intro"><h2>Tools that fit your business.</h2><p>We select technology based on the problem, your data and your existing environment.</p></div>
-        <div class="tech-tags"><span>Snowflake</span><span>Python</span><span>Tableau</span><span>dbt</span><span>SQL</span></div>
+        <div class="tech-intro"><h2 id="who-heading">Built for growing Indian businesses.</h2><p>Practical reporting for small and medium-sized businesses in Pune and across India.</p></div>
+        <div class="tech-tags"><span>Manufacturers</span><span>Distributors &amp; wholesalers</span><span>Retail businesses</span><span>Service companies</span><span>ERP &amp; CRM users</span><span>Multi-department teams</span></div>
       </div>
     </section>
 
     <section id="engagement">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Flexible ways to work together</span>
-          <h2>Get the support you need, when you need it.</h2>
-          <p>Whether you have a defined project or need an ongoing analytics partner, we can shape an engagement around your goals.</p>
+          <span class="eyebrow">One managed monthly service</span>
+          <h2>Your outsourced analytics and reporting partner.</h2>
+          <p>Raya is an ongoing service. You subscribe monthly, and we look after your reporting end to end.</p>
         </div>
         <div class="engagement">
-          <article class="engage-card featured"><h3>Ongoing analytics partner</h3><p>Consistent support for businesses that need reporting and analytics capabilities without a full in-house team.</p><ul><li>Regular reporting and dashboard improvements</li><li>Data pipeline monitoring and enhancements</li><li>Ad-hoc analysis and decision support</li><li>A practical, predictable engagement</li></ul></article>
-          <article class="engage-card"><h3>Defined analytics projects</h3><p>Focused delivery for a specific reporting, data integration or analytics requirement.</p><ul><li>Dashboard design and development</li><li>Data consolidation and transformation</li><li>Reporting automation</li><li>Analytics discovery and recommendations</li></ul></article>
+          <article class="engage-card featured">
+            <h3>Included in your monthly subscription</h3>
+            <p>Everything needed to keep your reporting accurate, automated and up to date.</p>
+            <ul>
+              <li>Connecting and maintaining your business data sources</li>
+              <li>Automated recurring reports</li>
+              <li>Interactive dashboards, built and maintained for you</li>
+              <li>Access to your reports and dashboards for your team</li>
+              <li>Ongoing reporting improvements</li>
+              <li>Support as your reporting needs evolve</li>
+            </ul>
+            <a class="btn btn-light" href="https://wa.me/918263807293" target="_blank" rel="noopener">Start a conversation <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="engage-card">
+            <h3>Why a managed service?</h3>
+            <p>Reporting needs never stand still. A monthly partnership means your reports keep up with your business.</p>
+            <ul>
+              <li>Save employee hours every week</li>
+              <li>Depend less on manual Excel reporting</li>
+              <li>Get dashboards without managing reporting infrastructure</li>
+              <li>Have a dedicated team to call when something changes</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="about" id="about">
       <div class="container about-inner">
-        <div class="about-mark"><strong>RAYA.</strong></div>
+        <div class="about-mark" aria-hidden="true"><strong>RAYA.</strong></div>
         <div class="about-copy">
           <span class="eyebrow">About Raya</span>
-          <h2>A focused analytics partner for growing businesses.</h2>
-          <p>Raya Data Solutions is a boutique analytics consulting firm built around a simple idea: useful data should make running a business easier.</p>
-          <p>We combine thoughtful problem-solving with modern data tools to help teams move from fragmented information to clear, confident decisions. We value straightforward communication, practical solutions and long-term working relationships.</p>
+          <h2>A boutique analytics partner for growing businesses.</h2>
+          <p>Raya Data Solutions is a Pune-based managed analytics and business intelligence firm built around a simple idea: useful data should make running a business easier.</p>
+          <p>We take on the reporting work your team shouldn't be doing by hand, and give you clear, reliable visibility into performance. We believe in straightforward communication, practical solutions and long-term working relationships.</p>
         </div>
       </div>
     </section>
@@ -319,21 +398,29 @@
         <div class="contact-panel">
           <div>
             <span class="eyebrow">Let's get started</span>
-            <h2>What could your business do with clearer data?</h2>
-            <p>Tell us what you are trying to understand, automate or improve. We would be glad to explore whether Raya can help.</p>
-            <a class="btn btn-primary" href="mailto:YOUR_EMAIL_HERE?subject=Analytics%20enquiry%20for%20Raya">Start a conversation ↗</a>
+            <h2>Ready to stop spending hours on reports?</h2>
+            <p>Message us on WhatsApp and tell us which reports take up most of your team's time. We'll explain how Raya can take them over.</p>
+            <a class="btn btn-primary" href="https://wa.me/918263807293" target="_blank" rel="noopener">Chat with us on WhatsApp ↗</a>
           </div>
           <div class="contact-details">
-            <div class="contact-detail"><small>Email</small><strong>YOUR_EMAIL_HERE</strong></div>
-            <div class="contact-detail"><small>Location</small><strong>Pune, India · Working remotely</strong></div>
-            <div class="contact-detail"><small>Typical conversations</small><strong>Dashboards · Reporting · Data pipelines · Analytics</strong></div>
+            <div class="contact-detail"><small>WhatsApp</small><a href="https://wa.me/918263807293" target="_blank" rel="noopener"><strong>+91 82638 07293</strong></a></div>
+            <div class="contact-detail"><small>Email</small><a href="mailto:hello@rayadatasolutions.com"><strong>hello@rayadatasolutions.com</strong></a></div>
+            <div class="contact-detail"><small>Location</small><strong>Pune, India · Serving businesses across India</strong></div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer><div class="container footer-row"><span>© <span id="year"></span> Raya Data Solutions. All rights reserved.</span><span>Clarity from your data.</span></div></footer>
+  <footer>
+    <div class="container footer-row">
+      <span>© <span id="year">2026</span> Raya Data Solutions. All rights reserved.</span>
+      <a href="mailto:hello@rayadatasolutions.com">hello@rayadatasolutions.com</a>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/918263807293" target="_blank" rel="noopener" aria-label="Chat with Raya Data Solutions on WhatsApp">Chat on WhatsApp</a>
+
   <script>
     const toggle = document.getElementById('menuToggle');
     const nav = document.getElementById('navLinks');
@@ -346,6 +433,7 @@
     nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
       nav.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation');
       toggle.textContent = '☰';
     }));
     document.getElementById('year').textContent = new Date().getFullYear();
